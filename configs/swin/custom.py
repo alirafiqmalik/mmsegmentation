@@ -9,8 +9,7 @@ model = dict(
         num_heads=[4, 8, 16, 32],
         window_size=7,
         drop_path_rate=0.3,
-        patch_norm=True,
-        use_checkpoint=False
+        patch_norm=True
     ),
     decode_head=dict(
         in_channels=[128, 256, 512, 1024],
