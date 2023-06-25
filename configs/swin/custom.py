@@ -8,7 +8,6 @@ model = dict(
         depths=[2, 2, 18, 2],
         num_heads=[4, 8, 16, 32],
         window_size=7,
-        ape=False,
         drop_path_rate=0.3,
         patch_norm=True,
         use_checkpoint=False
