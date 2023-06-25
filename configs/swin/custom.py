@@ -2,23 +2,37 @@ _base_ = [
     '../_base_/models/upernet_swin.py', '../_base_/datasets/custom.py',
     '../_base_/default_runtime.py', '../_base_/schedules/schedule_160k.py'
 ]
+# './swin-tiny-patch4-window7-in1k-pre_upernet_8xb2-160k_ade20k-512x512.py'
+
+checkpoint_file = 'https://download.openmmlab.com/mmsegmentation/v0.5/pretrain/swin/swin_base_patch4_window7_224_20220317-e9b98025.pth'  # noqa
 model = dict(
     backbone=dict(
+        init_cfg=dict(type='Pretrained', checkpoint=checkpoint_file),
         embed_dims=128,
         depths=[2, 2, 18, 2],
-        num_heads=[4, 8, 16, 32],
-        window_size=7,
-        drop_path_rate=0.3,
-        patch_norm=True
-    ),
-    decode_head=dict(
-        in_channels=[128, 256, 512, 1024],
-        num_classes=10
-    ),
-    auxiliary_head=dict(
-        in_channels=512,
-        num_classes=10
-    ))
+        num_heads=[4, 8, 16, 32]),
+    decode_head=dict(in_channels=[128, 256, 512, 1024], num_classes=150),
+    auxiliary_head=dict(in_channels=512, num_classes=150))
+
+
+
+# model = dict(
+#     backbone=dict(
+#         embed_dims=128,
+#         depths=[2, 2, 18, 2],
+#         num_heads=[4, 8, 16, 32],
+#         window_size=7,
+#         drop_path_rate=0.3,
+#         patch_norm=True
+#     ),
+#     decode_head=dict(
+#         in_channels=[128, 256, 512, 1024],
+#         num_classes=10
+#     ),
+#     auxiliary_head=dict(
+#         in_channels=512,
+#         num_classes=10
+#     ))
 
 # AdamW optimizer, no weight decay for position embedding & layer norm in backbone
 optimizer = dict(_delete_=True, type='AdamW', lr=0.00006, betas=(0.9, 0.999), weight_decay=0.01,
