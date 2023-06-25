@@ -1,6 +1,6 @@
 # dataset settings
 dataset_type = 'FloodNet'
-data_root = 'Dataset/'
+data_root = '/kaggle/input/floodnet-mydata-output12gb/content/drive/MyDrive/Thesis_Code_msee/FloodNet_myData'
 crop_size = (512, 512)
 train_pipeline = [
     dict(type='LoadImageFromFile'),
