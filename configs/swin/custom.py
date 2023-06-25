@@ -42,7 +42,7 @@ model = dict(
         init_cfg=dict(
             type='Pretrained',
             checkpoint=
-            'https://download.openmmlab.com/mmsegmentation/v0.5/pretrain/swin/swin_tiny_patch4_window7_224_20220317-1cdeb081.pth'
+            'https://download.openmmlab.com/mmsegmentation/v0.5/pretrain/swin/swin_base_patch4_window12_384_22k_20220317-e5c09f74.pth'
         )),
     decode_head=dict(
         type='UPerHead',
@@ -247,4 +247,4 @@ default_hooks = dict(
     checkpoint=dict(type='CheckpointHook', by_epoch=False, interval=16000),
     sampler_seed=dict(type='DistSamplerSeedHook'),
     visualization=dict(type='SegVisualizationHook'))
-checkpoint_file = 'https://download.openmmlab.com/mmsegmentation/v0.5/pretrain/swin/swin_tiny_patch4_window7_224_20220317-1cdeb081.pth'
+checkpoint_file = '/kaggle/working/swin_custom.pth'
