@@ -92,7 +92,7 @@ class LoadAnnotations(MMCV_LoadAnnotations):
         """
 
         img_bytes = fileio.get(
-            results['seg_map_path'].split(".")[0]+"_lab.png", backend_args=self.backend_args)
+            results['seg_map_path'], backend_args=self.backend_args)
         gt_semantic_seg = mmcv.imfrombytes(
             img_bytes, flag='unchanged',
             backend=self.imdecode_backend).squeeze().astype(np.uint8)
